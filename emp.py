@@ -1,11 +1,17 @@
-import random
-def check_attendance(attendance):
-    if attendance==0:
-        return 0
-    if attendance==1:
-        print("The wage is: ")
-        return 20*8
-atd_random=random.randint(0,1)
-print(check_attendance(atd_random))
+part_time_employee = input("Enter part-time employee name: ")
+age = int(input("Enter age of the employee: "))
+wage_per_hour = int(input("Enter wage per hour: "))
+
+PART_TIME_HOURS = 8
+part_time_wage = PART_TIME_HOURS * wage_per_hour
+
+print("\nEmployee Details:")
+print("Name:", part_time_employee)
+print("Age:", age)
+print("Part-time Employee Wage:", part_time_wage)
+
+
+
+
 
 
