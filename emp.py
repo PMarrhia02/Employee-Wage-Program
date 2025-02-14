@@ -1,30 +1,27 @@
-import random
+def calculate_wage():
+    print("Employee Wage Calculator (20 Working Days/Month)")
 
-def check_attendance():
-    print("Welcome to Employee Wage Computation Program on Master Branch")
+    wage_type = input("Do you earn 'daily' or 'hourly'? ").strip().lower()
 
-    attendance = random.choice([1, 0])
+    if wage_type == "daily":
+        daily_wage = float(input("Enter your daily wage (Rs.): "))
+        monthly_wage = daily_wage * 20
 
-    match attendance:
-        case 0:
-            print("The Employee is Absent")
-            return 0
-        case 1:
-            print("The Employee is Present")
-            job_type = input("Enter a type of job (part/full): ")
+    elif wage_type == "hourly":
+        hourly_wage = float(input("Enter your hourly wage (Rs.): "))
+        hours_per_day = float(input("Enter hours you work per day: "))
+        monthly_wage = hourly_wage * hours_per_day * 20
 
-            match job_type:
-                case 'part':
-                    return 20 * 6
-                case 'full':
-                    return 20 * 8
-                case _:
-                    return "Invalid job type"
+    else:
+        print("Invalid input! Please enter 'daily' or 'hourly'.")
+        return
 
-if __name__ == "__main__":
-    wage = check_attendance()
-    print("Wage:", wage)
-    print("Welcome to Employee Wage Computation")
+    print(f"Your estimated monthly wage: Rs. {monthly_wage:.2f}")
+
+calculate_wage()
+
+
+
 
 
 
