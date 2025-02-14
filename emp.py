@@ -1,24 +1,36 @@
-def calculate_wage():
-    print("Employee Wage Calculator (20 Working Days/Month)")
+print("Employee Wage Calculator (Max: 100 hours OR 20 days)")
 
-    wage_type = input("Do you earn 'daily' or 'hourly'? ").strip().lower()
+wage_type = input("Enter 'daily' or 'hourly' wage: ").strip().lower()
+total_wage = 0
+days = 0
+hours = 0
 
-    if wage_type == "daily":
-        daily_wage = float(input("Enter your daily wage (Rs.): "))
-        monthly_wage = daily_wage * 20
+if wage_type == "daily":
+    daily_wage = float(input("Enter your daily wage (Rs.): "))
+    
+    while days < 20:
+        days += 1
+        total_wage += daily_wage
+        print(f"Day {days}: Total Wage = Rs. {total_wage}")
 
-    elif wage_type == "hourly":
-        hourly_wage = float(input("Enter your hourly wage (Rs.): "))
-        hours_per_day = float(input("Enter hours you work per day: "))
-        monthly_wage = hourly_wage * hours_per_day * 20
+elif wage_type == "hourly":
+    hourly_wage = float(input("Enter your hourly wage (Rs.): "))
+    hours_per_day = float(input("Enter hours worked per day: "))
 
-    else:
-        print("Invalid input! Please enter 'daily' or 'hourly'.")
-        return
+    while days < 20 and hours < 100:
+        days += 1
+        hours += hours_per_day
+        total_wage += hourly_wage * hours_per_day
+        print(f"Day {days}: Total Wage = Rs. {total_wage}")
 
-    print(f"Your estimated monthly wage: Rs. {monthly_wage:.2f}")
+        if hours >= 100:
+            break
 
-calculate_wage()
+else:
+    print("Invalid input!")
+
+print(f"Final Wage: Rs. {total_wage}")
+
 
 
 
