@@ -1,31 +1,26 @@
 class EmployeeWage:
-    total_wage = 0
-    total_days = 0
-    total_hours = 0
-
     @classmethod
-    def calculate_wage(cls):
-        wage_type = input("Daily or Hourly? ").strip().lower()
+    def calculate_wage(cls, company, wage_type, wage, max_days, max_hours, hours_per_day=0):
+        total_wage = 0
+        total_days = 0
+        total_hours = 0
 
-        if wage_type == "daily":
-            daily_wage = float(input("Daily wage (Rs.): "))
-            while cls.total_days < 20:
-                cls.total_days += 1
-                cls.total_wage += daily_wage
-                print(f"Day {cls.total_days}: Rs. {cls.total_wage}")
+        while total_days < max_days and (wage_type == "daily" or total_hours < max_hours):
+            total_days += 1
+            if wage_type == "daily":
+                total_wage += wage
+            else:
+                total_hours += hours_per_day
+                total_wage += wage * hours_per_day
+                if total_hours >= max_hours:
+                    break
 
-        elif wage_type == "hourly":
-            hourly_wage = float(input("Hourly wage (Rs.): "))
-            hours_per_day = float(input("Hours per day: "))
-            while cls.total_days < 20 and cls.total_hours < 100:
-                cls.total_days += 1
-                cls.total_hours += hours_per_day
-                cls.total_wage += hourly_wage * hours_per_day
-                print(f"Day {cls.total_days}: Rs. {cls.total_wage}")
+        print(f"{company} - Final Wage: Rs. {total_wage}")
 
-        print(f"Final Wage: Rs. {cls.total_wage}")
+EmployeeWage.calculate_wage("Company A", "daily", 500, 20, 100)
+EmployeeWage.calculate_wage("Company B", "hourly", 50, 22, 120, 5)
 
-EmployeeWage.calculate_wage()
+
 
 
 
